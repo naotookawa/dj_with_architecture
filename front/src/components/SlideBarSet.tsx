@@ -1,9 +1,26 @@
 // import React from 'react';
+import { SlideBar } from './SlideBar';
 
-export const SlideBar = () => {
+interface SlideBarData {
+    id: number;
+    title: string;
+    value: number;
+}
 
-    return (<>
-      <div>やあ、僕はスライドバーの集まりだよ！</div>
-      </>
+interface SlideBarSetProps {
+    slideBars: SlideBarData[];
+    onSliderChange?: (id: number, value: number) => void;
+  }
+
+export const SlideBarSet:React.FC<SlideBarSetProps> = ({slideBars, onSliderChange}) => {
+    return (
+        <>
+            {slideBars.map((slideBar) => (
+              <SlideBar 
+              slideBar = {slideBar} 
+              key = {slideBar.id}
+              onChange = {onSliderChange} />
+            ))}
+        </>
     )
   };

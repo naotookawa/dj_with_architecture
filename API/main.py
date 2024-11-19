@@ -2,6 +2,7 @@ import numpy as np
 import time
 import threading
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from pydub import AudioSegment
 from pydub.playback import play
 from pydantic import BaseModel
@@ -10,6 +11,18 @@ import asyncio
 import uvicorn
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins= origins,
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
 
 # 音量データ周りの処理.
 class VolumeData(BaseModel):
@@ -32,6 +45,7 @@ current_volume:VolumeData = VolumeData( mic0=0,
 async def adjust_volume(data: VolumeData):
     global current_volume
     current_volume = data # 音量設定を更新
+    # print(f"Volume adjusted: {current_volume}")
     return {
         "status": "success",
         "message": "Volume adjusted successfully",
@@ -107,38 +121,6 @@ async def stop_playing():
     for i in range(len(flags)):
         flags[i] = False
     return {"status": "success", "message": "Audio stopped"}
-
-# @app.post("/test/play")
-# async def start_playing_test(data: Request):
-#     volume_data = await data.json()
-
-#     combined_audio = None
-#     for i, file in enumerate(audio_files):
-#         audio = audio_list[i]
-#         print(audio.frame_rate)
-#         print(audio.channels)
-#         print(audio)
-#         audio = audio + volume_data[f"mic{i+1}"]
-#         if combined_audio is None:
-#             combined_audio = audio
-#         else:
-#             combined_audio = combined_audio.overlay(audio)
-
-#     audio_array = np.array(combined_audio.get_array_of_samples())
-#     sd.play(audio_array, samplerate=combined_audio.frame_rate)
-
-#     return {"status": "success", "message": "Test audio started playing"}
-
-
-# async def play_audio_loop():
-#     while True:
-#         segment = AudioSegment.silent(duration=1000)  # 1秒の無音
-#         for mic, volume in current_volume.items():
-#             segment = segment + volume  # 各マイクの音量を適用（サンプル）
-#         sd.play(segment.get_array_of_samples(), samplerate=segment.frame_rate)
-#         await asyncio.sleep(1)
-
-
 
 # リアルタイムで音声を再生するための処理.
 samplerate = 44100

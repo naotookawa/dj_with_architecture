@@ -1,9 +1,10 @@
 # dj_with_architecture
 プロジェクトプロトタイプの進捗をここに投げていきます。  
   
-apiはfastAPIを使用しています。サーバーで音を鳴らすので、  
+apiはfastAPIを使用しています。サーバーで音を鳴らすので、apiに変な記述がたくさんあります。  
+そのぶんUIは軽いはずです。  
 front はvite環境でreactのframeを使用しています。  
-cgはthree.jsを使用しています。  
+CGはthree.jsを使用する予定です。  
 
 開発用のメモです  
 npm run dev でレンダリングできます
