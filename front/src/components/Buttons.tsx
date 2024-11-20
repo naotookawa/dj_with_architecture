@@ -72,11 +72,12 @@ export const Buttons:React.FC<ButtonProps> = ({currentVolume}) => {
       }
 
     return (<>
-        <div>
-            <button onClick={startPlaying}> Click me to listen to the ROOM!</button>
-            <button onClick={stopPlaying}> Are you sure to stop? </button>
-            <button onClick={playEnvironment}> ハウリング(うるさいです) </button>
+        <div style={{fontSize:'20px'}}>
+            <button onClick={startPlaying}><b>Listen!</b></button>
+            <button onClick={stopPlaying}><b>stop?</b></button>
+            <button onClick={playEnvironment}><b>Howling...</b></button>
         </div>
+        <br/>
       </>
     )
   };

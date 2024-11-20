@@ -15,12 +15,14 @@ interface SlideBarSetProps {
 export const SlideBarSet:React.FC<SlideBarSetProps> = ({slideBars, onSliderChange}) => {
     return (
         <>
+        <div style={{fontSize:'16px'}}>
             {slideBars.map((slideBar) => (
               <SlideBar 
               slideBar = {slideBar} 
               key = {slideBar.id}
               onChange = {onSliderChange} />
             ))}
+        </div>
         </>
     )
   };
