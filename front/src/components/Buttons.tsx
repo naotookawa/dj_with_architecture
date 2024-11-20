@@ -1,7 +1,7 @@
 // import React from 'react';
 
 interface ButtonProps {
-    volumeForButton: {
+    currentVolume: {
       mic0: number;
       mic1: number;
       mic2: number;
@@ -11,12 +11,13 @@ interface ButtonProps {
     };
   }
 
-export const Buttons:React.FC<ButtonProps> = ({volumeForButton}) => {
+export const Buttons:React.FC<ButtonProps> = ({currentVolume}) => {
+
 
     const startPlaying = async () => {
         console.log("start playing")
         const playUrl = "http://localhost:8000/play";
-        const postData = volumeForButton;
+        const postData = currentVolume;
     
         const response = await fetch(playUrl, {
           method: 'POST',
@@ -35,7 +36,7 @@ export const Buttons:React.FC<ButtonProps> = ({volumeForButton}) => {
       const stopPlaying = async () => {
         console.log("stop playing")
         const playUrl = "http://localhost:8000/stop";
-        const postData = volumeForButton;
+        const postData = currentVolume;
     
         const response = await fetch(playUrl, {
           method: 'POST',
@@ -54,7 +55,7 @@ export const Buttons:React.FC<ButtonProps> = ({volumeForButton}) => {
       const playEnvironment = async () => {
         console.log("play environment")
         const playUrl = "http://localhost:8000/play/environment";
-        const postData = volumeForButton;
+        const postData = currentVolume;
     
         const response = await fetch(playUrl, {
           method: 'POST',
@@ -72,9 +73,9 @@ export const Buttons:React.FC<ButtonProps> = ({volumeForButton}) => {
 
     return (<>
         <div>
-            <button onClick={startPlaying}> Click me to play like DJ!</button>
+            <button onClick={startPlaying}> Click me to listen to the ROOM!</button>
             <button onClick={stopPlaying}> Are you sure to stop? </button>
-            <button onClick={playEnvironment}> Listen the environment,,,  </button>
+            <button onClick={playEnvironment}> ハウリング(うるさいです) </button>
         </div>
       </>
     )

@@ -24,8 +24,8 @@ export const SlideBar: React.FC<SlideBarProps> = ({ slideBar, onChange }) => {
       <input
         id={`slide-bar-${slideBar.id}`}
         type="range"
-        min="-50"
-        max="20"
+        min="-80"
+        max="0"
         value={slideBar.value}
         onChange={handleChange}
       />

@@ -4,7 +4,8 @@
 apiはfastAPIを使用しています。サーバーで音を鳴らすので、apiに変な記述がたくさんあります。  
 そのぶんUIは軽いはずです。  
 front はvite環境でreactのframeを使用しています。  
-CGはthree.jsを使用する予定です。  
+CGはthree.jsを使用しています。  
+あと、tailwindを使っています。  
 
 開発用のメモです  
 npm run dev でレンダリングできます

@@ -3,7 +3,7 @@
 export const Header = () => {
 
     return (<>
-      <div>やあ、僕はヘッダーだよ！</div>
+      {/* <div>やあ、僕はヘッダーだよ！</div> */}
       </>
     )
   };

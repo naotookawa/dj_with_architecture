@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+// import './App.css'
 import {Header} from './components/Header.tsx'
 import {SlideBarSet} from './components/SlideBarSet.tsx'
 import {MeshPage} from './components/MeshPage.tsx'
@@ -7,12 +7,12 @@ import {Buttons} from './components/Buttons.tsx'
 
 function App() {
   const [slideBars, setSlideBars] = useState([
-    { id: 0, title: 'スライドバー0', value :0},
-    { id: 1, title: 'スライドバー1', value :0},
-    { id: 2, title: 'スライドバー2', value :0},
-    { id: 3, title: 'スライドバー3', value :0},
-    { id: 4, title: 'スライドバー4', value :0},
-    { id: 5, title: 'スライドバー5', value :0},
+    { id: 0, title: 'スライドバー0', value :-80},
+    { id: 1, title: 'スライドバー1', value :-80},
+    { id: 2, title: 'スライドバー2', value :-80},
+    { id: 3, title: 'スライドバー3', value :-80},
+    { id: 4, title: 'スライドバー4', value :-80},
+    { id: 5, title: 'スライドバー5', value :-80},
   ])
 
   const handleChange = async (id: number, value: number) => {
@@ -46,7 +46,7 @@ function App() {
     return response.json()
   }
 
-  const volumeForButton = {
+  const currentVolume = {
     "mic0": slideBars[0].value,
     "mic1": slideBars[1].value,
     "mic2": slideBars[2].value,
@@ -56,13 +56,13 @@ function App() {
   };
 
   return (
-    <>
+    <div >
       <Header />
+      <Buttons currentVolume = {currentVolume}/>
       <SlideBarSet slideBars={slideBars} onSliderChange = {handleChange}/>
-      <MeshPage />
-      <Buttons volumeForButton = {volumeForButton}/>
-    </>
+      <MeshPage currentVolume = {currentVolume}/>
+    </div>
   )
 }
 
-export default App
+export default App;

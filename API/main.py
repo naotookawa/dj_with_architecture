@@ -136,7 +136,7 @@ async def play_audio():
     # 非同期で実行するためにストリームを別スレッドで開始
     with sd.Stream(samplerate=samplerate, channels=channels, callback=callback):
         print("Playing environment audio")
-        await asyncio.sleep(10)  # 非同期スリープで10秒間再生
+        await asyncio.sleep(5)  # 非同期スリープで10秒間再生
 
 
 @app.post("/play/environment") 
