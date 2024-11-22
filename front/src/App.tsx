@@ -7,12 +7,12 @@ import {Buttons} from './components/Buttons.tsx'
 
 function App() {
   const [slideBars, setSlideBars] = useState([
-    { id: 0, title: 'スライドバー0', value :-100},
-    { id: 1, title: 'スライドバー1', value :-100},
-    { id: 2, title: 'スライドバー2', value :-100},
-    { id: 3, title: 'スライドバー3', value :-100},
-    { id: 4, title: 'スライドバー4', value :-100},
-    { id: 5, title: 'スライドバー5', value :-100},
+    { id: 0, title: 'スライドバー0', value :1},
+    { id: 1, title: 'スライドバー1', value :1},
+    { id: 2, title: 'スライドバー2', value :1},
+    { id: 3, title: 'スライドバー3', value :1},
+    { id: 4, title: 'スライドバー4', value :1},
+    { id: 5, title: 'スライドバー5', value :1},
   ])
 
   const handleChange = async (id: number, value: number) => {

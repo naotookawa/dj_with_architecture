@@ -18,15 +18,16 @@ interface MeshPageProps {
 export const MeshPage: React.FC<MeshPageProps> = ({ currentVolume }) => {
 
   // const curveRef = useRef<THREE.Line | null>(null);
-  const zChanger = useCallback((z: number) => (z + 100) / 100, []);
 
+  const sumVolume = Object.values(currentVolume).reduce((acc, cur) => acc + cur, 0) / 600;
+  
   const positions = [
-    new THREE.Vector3(-1, -1, zChanger(currentVolume.mic0)), // mic0
-    new THREE.Vector3(-1, 0, zChanger(currentVolume.mic1)), // mic1
-    new THREE.Vector3(-1, 1, zChanger(currentVolume.mic2)), // mic2
-    new THREE.Vector3(1, -1, zChanger(currentVolume.mic3)), // mic3
-    new THREE.Vector3(1, 0, zChanger(currentVolume.mic4)), // mic4
-    new THREE.Vector3(1, 1, zChanger(currentVolume.mic5)), // mic5
+    new THREE.Vector3(-1, -1, currentVolume.mic0/100 - sumVolume), // mic0
+    new THREE.Vector3(-1, 0, currentVolume.mic1/100 - sumVolume), // mic1
+    new THREE.Vector3(-1, 1, currentVolume.mic2/100 - sumVolume), // mic2
+    new THREE.Vector3(1, -1, currentVolume.mic3/100 - sumVolume), // mic3
+    new THREE.Vector3(1, 0, currentVolume.mic4/100 - sumVolume), // mic4
+    new THREE.Vector3(1, 1, currentVolume.mic5/100 - sumVolume), // mic5
   ];
 
   const createMesh = (curve: THREE.Curve<THREE.Vector3>) => {
@@ -64,7 +65,12 @@ export const MeshPage: React.FC<MeshPageProps> = ({ currentVolume }) => {
   // curveRef.current = mesh1;
   
   return (
-    <Canvas style = {{backgroundColor:'black', width:'100%', height:'60vh'}} camera = {{position:[0,0,10]}}>
+    <Canvas style = {{backgroundColor:'black',
+                      width:'100%',
+                      height:'60vh',
+                      // cursor:'none'
+                      }}
+            camera = {{position:[0,0,10]}}>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       {/* {curveRef.current && (
@@ -78,7 +84,7 @@ export const MeshPage: React.FC<MeshPageProps> = ({ currentVolume }) => {
           </line>
         </mesh>
       )} */}
-      {meshList.map((mesh, index) => <primitive scale = {[4, 4, 5]} object = {mesh} key = {index}/>)}
+      {meshList.map((mesh, index) => <primitive scale = {[4, 3, 0.5]} object = {mesh} key = {index}/>)}
       <OrbitControls />
     </Canvas>
   );

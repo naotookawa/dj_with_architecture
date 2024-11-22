@@ -72,10 +72,10 @@ export const Buttons:React.FC<ButtonProps> = ({currentVolume}) => {
       }
 
     return (<>
-        <div style={{fontSize:'20px'}}>
+        <div style={{fontSize:'16px'}}>
             <button onClick={startPlaying}><b>Listen!</b></button>
             <button onClick={stopPlaying}><b>stop?</b></button>
-            <button onClick={playEnvironment}><b>Howling...</b></button>
+            <button onClick={playEnvironment}><b>Environment</b></button>
         </div>
         <br/>
       </>
