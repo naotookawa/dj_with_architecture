@@ -1,19 +1,25 @@
 import { useState } from 'react'
 import './App.css'
-import {Header} from './components/Header.tsx'
-import {SlideBarSet} from './components/SlideBarSet.tsx'
-import {MeshPage} from './components/MeshPage.tsx'
-import {Buttons} from './components/Buttons.tsx'
+import { Header } from './components/Header.tsx'
+import { SlideBarSet } from './components/SlideBarSet.tsx'
+import { MeshPage } from './components/MeshPage.tsx'
+import { Buttons } from './components/Buttons.tsx'
+import { Location } from './components/Location.tsx'
 
 function App() {
   const [slideBars, setSlideBars] = useState([
-    { id: 0, title: 'スライドバー0', value :1},
-    { id: 1, title: 'スライドバー1', value :1},
-    { id: 2, title: 'スライドバー2', value :1},
-    { id: 3, title: 'スライドバー3', value :1},
-    { id: 4, title: 'スライドバー4', value :1},
-    { id: 5, title: 'スライドバー5', value :1},
+    { id: 0, title: 'スライドバー0', value: 1 },
+    { id: 1, title: 'スライドバー1', value: 1 },
+    { id: 2, title: 'スライドバー2', value: 1 },
+    { id: 3, title: 'スライドバー3', value: 1 },
+    { id: 4, title: 'スライドバー4', value: 1 },
+    { id: 5, title: 'スライドバー5', value: 1 },
   ])
+
+  const [location, setLocation] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
 
   const handleChange = async (id: number, value: number) => {
     const playUrl = "http://localhost:8000/volume";
@@ -58,9 +64,10 @@ function App() {
   return (
     <div >
       <Header />
-      <Buttons currentVolume = {currentVolume}/>
-      <SlideBarSet slideBars={slideBars} onSliderChange = {handleChange}/>
-      <MeshPage currentVolume = {currentVolume}/>
+      <Location location={location} setLocation={setLocation}/>
+      <Buttons currentVolume={currentVolume} />
+      <SlideBarSet slideBars={slideBars} onSliderChange={handleChange} />
+      <MeshPage currentVolume={currentVolume} />
     </div>
   )
 }
